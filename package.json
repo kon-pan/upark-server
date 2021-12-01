@@ -7,7 +7,7 @@
     "start": "node build/index.js",
     "build": "tsc -p .",
     "dev": "nodemon --exec ts-node src/index.ts",
-    "heroku-prebuild": "yarn install",
+    "heroku-prebuild": "yarn add",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
