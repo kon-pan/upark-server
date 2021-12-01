@@ -1,3 +1,6 @@
+build/
+
+# AUTO GENERATED CONTENT
 # Logs
 logs
 *.log
