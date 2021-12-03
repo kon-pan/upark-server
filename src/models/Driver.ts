@@ -9,7 +9,7 @@ class Driver {
    */
   static async save(user: IDriver): Promise<boolean | any> {
     const sql = `
-    INSERT INTO users(
+    INSERT INTO drivers(
       first_name, last_name, display_name, email, password, phone_number, balance, registered_on, registered_with, google_id
     ) 
     VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
@@ -45,7 +45,7 @@ class Driver {
     switch (col) {
       case 'email':
         try {
-          const result = await db.query('SELECT * FROM users WHERE email=$1', [
+          const result = await db.query('SELECT * FROM drivers WHERE email=$1', [
             value,
           ]);
 
@@ -64,7 +64,7 @@ class Driver {
       case 'googleId':
         try {
           const result = await db.query(
-            'SELECT * FROM users WHERE google_id=$1',
+            'SELECT * FROM drivers WHERE google_id=$1',
             [value]
           );
 
@@ -81,7 +81,7 @@ class Driver {
         break;
       case 'id':
         try {
-          const result = await db.query('SELECT * FROM users WHERE id=$1', [
+          const result = await db.query('SELECT * FROM drivers WHERE id=$1', [
             value,
           ]);
 
