@@ -1,13 +1,10 @@
-console.log('[./db/db.config.ts]');
-
-import { Pool, DatabaseError } from 'pg';
+import { Pool } from 'pg';
 
 // Convert environment string value to number
 const envDatabasePort = parseInt(process.env.DATABASE_PORT || '');
 const DATABASE_PORT = Number.isInteger(envDatabasePort)
   ? envDatabasePort
   : undefined;
-console.log(DATABASE_PORT);
 
 const pool = new Pool({
   user: process.env.DATABASE_USER,
