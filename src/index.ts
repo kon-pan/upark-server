@@ -8,6 +8,7 @@ const port = process.env.PORT || 4000;
 // MIDDLEWARES
 app.use(express.json());
 app.use(cors({ origin: process.env.CLIENT_HOSTNAME, credentials: true }));
+
 // API ROUTING
 app.use('/driver', driverRouter);
 

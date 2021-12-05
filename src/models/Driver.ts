@@ -7,7 +7,7 @@ class Driver {
    * @param {IDatabaseUser} user - Streamlined object containing the user registration info
    * @returns {Promise<boolean>} - If user is succesfully entered to the database returns 1, else 0
    */
-  static async save(user: IDriver): Promise<boolean | any> {
+  static async save(user: IDriver): Promise<boolean> {
     const sql = `
     INSERT INTO drivers(
       first_name, last_name, display_name, email, password, phone_number, balance, registered_on, registered_with, google_id
@@ -29,7 +29,11 @@ class Driver {
         user.googleId,
       ]);
 
-      console.log(result);
+      if (result.rowCount === 1) {
+        return true;
+      } else {
+        return false;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -45,9 +49,10 @@ class Driver {
     switch (col) {
       case 'email':
         try {
-          const result = await db.query('SELECT * FROM drivers WHERE email=$1', [
-            value,
-          ]);
+          const result = await db.query(
+            'SELECT * FROM drivers WHERE email=$1',
+            [value]
+          );
 
           if (result.rowCount === 0) {
             return {} as IPostgresDriver; // email does not exist

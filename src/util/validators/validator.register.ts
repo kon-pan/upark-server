@@ -29,8 +29,12 @@ const registerValidator = [
       return titleCased;
     }),
   check('email')
-    .isEmail()
     .trim()
+    .not()
+    .isEmpty()
+    .withMessage('Εισάγετε τιμή σε αυτό το πεδίo.')
+    .bail()
+    .isEmail()
     .withMessage('Εισάγετε μια σωστή διεύθυνση ηλ. ταχυδρομείου.')
     .bail()
     .custom((value) => {

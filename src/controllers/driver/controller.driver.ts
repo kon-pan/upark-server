@@ -30,7 +30,7 @@ export const registerDriver = async (req: Request, res: Response) => {
     emailErr: '',
     passwordErr: '',
     passwordConfirmErr: '',
-    registerSucccess: false,
+    registerSuccess: false,
   };
 
   if (!errors.isEmpty()) {
@@ -71,7 +71,7 @@ export const registerDriver = async (req: Request, res: Response) => {
     // Handle registration time
     const nowUtcIso = DateTime.now().toUTC().toISO();
 
-    // Create the IDatabaseUser object
+    // Create the IDriver object
     const user: IDriver = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -85,10 +85,13 @@ export const registerDriver = async (req: Request, res: Response) => {
       googleId: null,
     };
 
-    // Save user to the database
-    const result = Driver.save(user);
+    // Save driver to the database
+    const result = await Driver.save(user);
 
-    response.registerSucccess = true;
+    if (result) {
+      response.registerSuccess = true;
+    }
+
     res.json(response);
   }
 };
