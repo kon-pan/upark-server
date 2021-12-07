@@ -91,7 +91,7 @@ class Driver {
           ]);
 
           if (result.rowCount === 0) {
-            return {} as IPostgresDriver; // google id does not exist
+            return {} as IPostgresDriver; // user id does not exist
           }
 
           const row: IPostgresDriver = result.rows[0];
